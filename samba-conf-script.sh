@@ -3,23 +3,30 @@
 echo -e  "######\e[1;92m Starting ---- Samba ---- Configuration \e[0m######"
 dt=$(date +%d-%b-%Y)
 # Add Users for samba access
-echo -e  "######\e[96m Add Users for samba access \e[0m######"
-sleep 2
+echo -e  "######\e[96m Adding Users for samba access \e[0m######"
+sleep 1
+useradd -r smbadmin 
+sleep 1
 useradd -r smbu1 
+sleep 1
 useradd -r smbu2 
+sleep 1
 useradd -r smbu3 
-sleep 2
-(echo "12345";echo "12345")|smbpasswd -a smbu1
-sleep 2
+sleep 1
+(echo "smbadmin";echo "smbadmin")|smbpasswd -a smbadmin
+sleep 1
+(echo "smbu1";echo "smbu1")|smbpasswd -a smbu1
+sleep 1
 (echo "smbu2";echo "smbu2")|smbpasswd -a smbu2
-sleep 2
+sleep 1
 (echo "smbu3";echo "smbu3")|smbpasswd -a smbu3
-sleep 2
+sleep 1
 groupadd smbgrp
+sleep 1
+usermod -aG smbgrp smbu1
+sleep 1
 usermod -aG smbgrp smbu2
-sleep 2
-usermod -aG smbgrp smbu3
-sleep 2
+sleep 1
 # Creating Directories for Samba Share
 echo -e  "######\e[96m Creating Directories for Samba Share \e[0m######"
 mkdir -p /DatA/{ISO,Share,Users}
