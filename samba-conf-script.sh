@@ -11,7 +11,9 @@ sleep 2
 sleep 2
 # Creating Directories for Samba Share
 echo -e  "######\e[96m Creating Directories for Samba Share \e[0m######"
-mkdir -p /Data/{ISO,Share,Softwares}
+mkdir -p /DatA/{ISO,Share,Users}
+sleep 2
+chmod -R 777 /DatA
 sleep 2
 # If file "smb.conf" exist in /etc/samba directory ,then take a backup
 echo -e  "######\e[96m Backup smb.conf \e[0m######"
@@ -23,9 +25,9 @@ echo -e  "######\e[96m Adding smb.conf \e[0m######"
 sleep 2
 # Starting samba , if directory "/etc/systemd" exist
 echo -e  "######\e[96m Starting samba \e[0m######"
-[ -d /etc/systemd ] && systemctl enable smbd && systemctl start smbd
 sleep 2
 testparm
+[ -d /etc/systemd ] && systemctl restart smbd && systemctl enable smbd
 sleep 2
 echo -e  "######\e[1;92m Samba ---- Configuration ---- Completed \e[0m######"
 read -rsp $'\e[1;97;45m     ...Press any key to Exit...   \e[0m\n' -n1 key
