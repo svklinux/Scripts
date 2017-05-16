@@ -6,8 +6,19 @@ dt=$(date +%d-%b-%Y)
 echo -e  "######\e[96m Add Users for samba access \e[0m######"
 sleep 2
 useradd -r smbu1 
+useradd -r smbu2 
+useradd -r smbu3 
 sleep 2
 (echo "12345";echo "12345")|smbpasswd -a smbu1
+sleep 2
+(echo "smbu2";echo "smbu2")|smbpasswd -a smbu2
+sleep 2
+(echo "smbu3";echo "smbu3")|smbpasswd -a smbu3
+sleep 2
+groupadd smbgrp
+usermod -aG smbgrp smbu2
+sleep 2
+usermod -aG smbgrp smbu3
 sleep 2
 # Creating Directories for Samba Share
 echo -e  "######\e[96m Creating Directories for Samba Share \e[0m######"
@@ -32,9 +43,4 @@ sleep 2
 echo -e  "######\e[1;92m Samba ---- Configuration ---- Completed \e[0m######"
 read -rsp $'\e[1;97;45m     ...Press any key to Exit...   \e[0m\n' -n1 key
 ############################
-
-
-
-
-
 
